@@ -21,6 +21,13 @@ Install Dependencies
     % bundle install
 
 
+Setup Twitter
+-------------
+
+    % tw --help
+    % tw --user:add
+
+
 Run
 ---
 
