@@ -19,13 +19,14 @@ linda.io.on :connect do
   puts "connect!! <#{linda.io.session}> (#{linda.io.type})"
   ts.watch ["twitter", "tweet"] do |tuple|
     p tuple
-    if tuple.size == 3 and !["success", "fail"].include?(tuple[2])
+    if tuple.size == 3
       begin
         tw.tweet tuple[2]
-        ts.write ["twitter", "tweet", "success"]
+        tuple << "success"
       rescue
-        ts.write ["twitter", "tweet", "fail"]
+        tuple << "fail"
       end
+      ts.write tuple
     end
   end
 end
